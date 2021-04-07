@@ -15,10 +15,10 @@ class Mailer extends LaravelMailer implements MailerContract
 {
     public function send($view, array $data = [], $callback = null)
     {
-        if ($view instanceof MailableContract) {
+        if ($view instanceof Mailable
+            && ! $view instanceof ShouldQueue
+        ) {
             $this->applyDebugHeaders($view);
-
-            return $this->sendMailable($view);
         }
 
         parent::send($view, $data, $callback);
