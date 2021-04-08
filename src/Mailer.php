@@ -2,8 +2,8 @@
 
 namespace BeyondCode\HeloLaravel;
 
-use Illuminate\Contracts\Mail\Mailable as MailableContract;
 use Illuminate\Contracts\Mail\Mailer as MailerContract;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailer as LaravelMailer;
 use Illuminate\Support\Facades\View;
