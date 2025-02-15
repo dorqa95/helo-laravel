@@ -105,7 +105,7 @@ trait CreatesMailers
 
         // We get Symfony Transport from Laravel 9 mailer
         if (version_compare(app()->version(), '10.0.0', '<')) {
-            $symfonyTransport = $app['mailer']->getSymfonyTransport();
+            $symfonyTransport = $app['mail.manager']->getSymfonyTransport();
         } else {
             $symfonyTransport = $app['mailer']->getSymfonyTransport();
         }
