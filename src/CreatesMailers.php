@@ -69,7 +69,7 @@ trait CreatesMailers
 
     protected function createLaravel8Mailer($app)
     {
-        $defaultDriver = $app['mail.manager']->getDefaultDriver();
+        $defaultDriver = $app['mailer']->getDefaultDriver();
         $config = $this->getConfig($defaultDriver);
 
         $swiftMailer = new Swift_Mailer($app['mail.manager']->createTransport($config));
@@ -100,7 +100,7 @@ trait CreatesMailers
 
     protected function createLaravel9Mailer($app)
     {
-        $defaultDriver = $app['mail.manager']->getDefaultDriver();
+        $defaultDriver = $app['mailer']->getDefaultDriver();
         $config = $this->getConfig($defaultDriver);
 
         // We get Symfony Transport from Laravel 9 mailer
