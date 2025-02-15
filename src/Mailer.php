@@ -2,8 +2,8 @@
 
 namespace BeyondCode\HeloLaravel;
 
+use Illuminate\Contracts\Mail\Mailable as MailableContract;
 use Illuminate\Contracts\Mail\Mailer as MailerContract;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailer as LaravelMailer;
 use Illuminate\Support\Facades\View;
@@ -15,10 +15,10 @@ class Mailer extends LaravelMailer implements MailerContract
 {
     public function send($view, array $data = [], $callback = null)
     {
-        if ($view instanceof Mailable
-            && !$view instanceof ShouldQueue
-        ) {
+        if ($view instanceof MailableContract) {
             $this->applyDebugHeaders($view);
+
+            return $this->sendMailable($view);
         }
 
         return parent::send($view, $data, $callback);
